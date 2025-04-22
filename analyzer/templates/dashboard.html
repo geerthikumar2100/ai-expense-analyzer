@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Analyzer</title>
+</head>
+<body>
+  <h1>Upload your Expenses CSV</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if summary %}
+    <h2>Parsed Transactions</h2>
+    <ul>
+      {% for t in summary %}
+        <li>
+          {{ t.date }} — {{ t.description }} — ₹{{ t.amount }}
+          <strong>[{{ t.category }}]</strong>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if chart %}
+    <h2>Spending Summary</h2>
+    <img src="data:image/png;base64,{{ chart }}" alt="Expense Chart"/>
+  {% endif %}
+
+  {% if insight %}
+    <h3>Insight</h3>
+    <p>{{ insight }}</p>
+  {% endif %}
+
+  {% if ai_insight %}
+  <div class="ai-insight">
+    <h3>💡 AI Insight</h3>
+    <p>{{ ai_insight }}</p>
+  </div>
+{% endif %}
+
+
+  {% if error %}
+  <p style="color: red;"><strong>{{ error }}</strong></p>
+{% endif %}
+
+
+</body>
+</html>
