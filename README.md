@@ -87,6 +87,28 @@ AI_Expense_Analyzer_Project/
 2. **View** parsed transactions and category breakdown.  
 3. **Analyze** spending with both basic and AI‑powered insights.
 
+## Test CSV Files
+
+To test the CSV parsing functionality, you can use the following CSV files included in the repository:
+
+### 1. `valid.csv`
+This file contains correctly formatted data, which is used for testing the functionality of the CSV parsing and AI insights generation. 
+
+### 2. `invalid.csv`
+This file contains malformed data (e.g., missing columns or incorrect values) to test how the application handles invalid CSV inputs.
+
+### 3. `empty.csv`
+This file is intentionally empty and can be used to test how the application handles cases when no data is provided in the CSV file.
+
+### How to Use the CSV Files
+
+- Place any of these CSV files in the appropriate directory where the application expects to read them.
+- The application will attempt to parse the file, and the behavior will depend on the file's content:
+  - **valid.csv**: The data will be processed and AI insights will be generated.
+  - **invalid.csv**: The system will raise an error or handle the invalid data gracefully.
+  - **empty.csv**: The system will notify that no data is available for processing.
+
+
 ## Key Design Decisions
 
 - **Keyword-Based Categorization**: Fast, transparent, and easy to extend with new keywords.  
