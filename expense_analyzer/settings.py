@@ -1,9 +1,14 @@
+import os
 import sys
+from pathlib import Path
+
+# Define the base directory
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # you can add template directories here if needed
+        'DIRS': [],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -15,6 +20,7 @@ TEMPLATES = [
         },
     },
 ]
+
 DEBUG = True
 ALLOWED_HOSTS = []
 ROOT_URLCONF = 'expense_analyzer.urls'
@@ -31,22 +37,32 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',  # Required for sessions
+    'django.contrib.sessions.middleware.SessionMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Required for auth
-    'django.contrib.messages.middleware.MessageMiddleware',  # Required for messages
+    'django.contrib.auth.middleware.AuthenticationMiddleware', 
+    'django.contrib.messages.middleware.MessageMiddleware',  
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 STATIC_URL = '/static/'
 SECRET_KEY = '3LT31i1Uy3CDFKTuIi-KwpuUROz8PAv7Wjd6SDF_9ps'
 
-# In settings.py, add this at the bottom (for testing only)
+# Update the DATABASES setting for SQLite
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite
+        'NAME': BASE_DIR / 'db.sqlite3',  # Store db.sqlite3 in the project root
+    }
+}
+
+# If running tests, use an in-memory database
 if 'test' in sys.argv:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:',
+            'NAME': ':memory:',  # In-memory database for tests
         }
     }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

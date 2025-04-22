@@ -3,6 +3,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('analyzer.urls')),  # ✅ include the actual URL patterns list, not a module!
+    path('', include('analyzer.urls')),  
 ]
 

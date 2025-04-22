@@ -1,5 +1,5 @@
 
-# 🧠 AI Expense Analyzer
+# AI Expense Analyzer
 
 A Django-based web application that analyzes your expenses from a CSV file, categorizes them, visualizes the data, and generates AI-powered insights using the Cohere API.
 
@@ -68,6 +68,7 @@ COHERE_API_KEY=your-api-key-here
 5. **Run the development server**
 
 ```bash
+python manage.py migrate
 python manage.py runserver
 ```
 
@@ -94,6 +95,13 @@ Open the `htmlcov/index.html` file in your browser to view the report.
 
 ---
 
+## 🧼 Resetting Uploaded CSV File
+
+To delete the previously uploaded CSV file, click the red "Delete Uploaded CSV" button after uploading and viewing the analysis.
+
+---
+
+
 ## 📂 Test CSV Files
 
 Inside the `test_files/` folder:
@@ -117,6 +125,16 @@ Visit [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to:
 
 ---
 
+## 📦 Dependencies
+
+- Django
+- matplotlib
+- pandas
+- python-dotenv
+- cohere 
+---
+
+
 ## 🧠 AI Integration (Cohere)
 
 This app uses [Cohere](https://cohere.com/) to summarize your expenses using natural language. You can get your API key from their website and paste it in the `.env` file.
@@ -128,6 +146,15 @@ This app uses [Cohere](https://cohere.com/) to summarize your expenses using nat
 > Based on your transactions, it seems you're spending the most on Food and Shopping. Consider reducing dine-outs or online purchases to improve savings.
 
 ---
+
+## 💡 Future Improvements
+
+- Add user authentication
+- Track monthly budgets
+- Export insights as PDF
+
+---
+
 
 ## 🙌 Contributions
 

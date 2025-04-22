@@ -8,11 +8,10 @@ import csv
 import cohere
 import io
 
-client = cohere.Client("IZmyKWyXUBrgED8Y3YWu3HZ9ROEf8WIp79sPIEOp")  # This line must be in utils.py
+client = cohere.Client("IZmyKWyXUBrgED8Y3YWu3HZ9ROEf8WIp79sPIEOp") 
 load_dotenv()
 co = cohere.Client(os.getenv("COHERE_API_KEY"))
 
-# ✅ Categorization keywords map
 CATEGORY_KEYWORDS = {
     "Groceries": ["grocery", "supermarket", "store", "mart", "big bazaar"],
     "Transport": ["uber", "ola", "taxi", "bus", "train", "metro", "ride"],
@@ -24,7 +23,6 @@ CATEGORY_KEYWORDS = {
     "Fitness": ["gym", "fitness"],
 }
 
-# ✅ Categorize transaction based on description
 def categorize_transaction(description):
     desc = description.lower()
     for category, keywords in CATEGORY_KEYWORDS.items():
@@ -33,11 +31,11 @@ def categorize_transaction(description):
     return "Others"
 
 def custom_parse_csv(file):
-    decoded_file = file.read().decode('utf-8')  # Decode the file
-    file.seek(0)  # Reset file pointer if you need to use it again later
+    decoded_file = file.read().decode('utf-8') 
+    file.seek(0)  
     data = []
     required_fields = {'Date', 'Description', 'Amount'}
-    reader = csv.DictReader(io.StringIO(decoded_file))  # Use StringIO to simulate text mode
+    reader = csv.DictReader(io.StringIO(decoded_file))  
 
     if not required_fields.issubset(reader.fieldnames):
         raise ValueError("CSV missing required columns: Date, Description, Amount")
@@ -58,7 +56,7 @@ def custom_parse_csv(file):
 
     return data
 
-# ✅ Generate plain-language insight using Cohere
+
 def generate_ai_insight(summary_dict):
     """
     summary_dict: e.g., {'Dining': 320, 'Groceries': 150}
